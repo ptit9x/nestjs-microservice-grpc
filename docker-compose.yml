@@ -8,6 +8,19 @@ services:
     volumes:
       - ./proto:/app
     working_dir: /app
+  db:
+    container_name: 'microservice_db'
+    hostname: 'microservice_db'
+    image: 'postgres:14-alpine'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: microservice_db
+      POSTGRES_USER: microservice_user
+      POSTGRES_PASSWORD: microservice_password
+    volumes:
+      - ./data/postgres:/data/postgres
+    restart: unless-stopped
 
   node_1:
     build:
@@ -32,6 +45,13 @@ services:
     working_dir: /app
     environment:
       - GRPC_URL_USER_SERVICE=0.0.0.0:50052
+      - DB_HOST=microservice_db
+      - DB_USERNAME=microservice_user
+      - DB_PASSWORD=microservice_password
+      - DB_NAME=postgres
+      - DB_PORT=5432
+    depends_on: 
+      - db
     
   node_client:
     build:
