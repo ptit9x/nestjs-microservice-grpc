@@ -1,0 +1,9 @@
+[submodule "microservices/nestjs-user-service"]
+	path = microservices/nestjs-user-service
+	url = git@github.com:ptit9x/nestjs-grpc-user-service.git
+[submodule "microservices/nestjs-base-service"]
+	path = microservices/nestjs-base-service
+	url = git@github.com:ptit9x/nestjs-grpc-base-service.git
+[submodule "nestjs-api-gateway"]
+	path = nestjs-api-gateway
+	url = git@github.com:ptit9x/nestjs-grpc-api-gateway.git
